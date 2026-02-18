@@ -11,7 +11,7 @@ do
         --image-id $ami_id \
         --instance-type "t3.micro" \
         --security-group-ids $sg_id \
-        --tag-specifications "ResourceType=instance,Tags=[{key=Name,value=$instance}]" \
+        --tag-specifications "ResourceType=instance,Tags=[{Key=Name,Value=$instance}]" \
         --query 'Instances[0].InstanceId' \
         --output text)
 #giving the above whole command like output of vairable variable=$(command) to create instance
@@ -37,8 +37,7 @@ do
 
   aws route53 change-resource-record-sets \
     --hosted-zone-id $zone_id \
-    --change-batch "
-     {
+    --change-batch '{ 
         "Comment": "Updating record", 
         "Changes": [
             {
