@@ -17,7 +17,7 @@ do
 #giving the above whole command like output of vairable variable=$(command) to create instance
 #the instance is created and we are keeping that instance id in instance_id vairable
 
-  if [ $instance=="frontend" ]; then
+  if [ $instance == "frontend" ]; then
     IP_address=$(aws ec2 describe-instances \
                --instance-ids $instance_id \
                --query 'Reservations[].Instances[].PublicIpAddress' \
