@@ -25,7 +25,7 @@ do
      record_name="$domain_name" #will create as jarugula.online
   else
      IP_address=$(aws ec2 describe-instances \
-            --instance-ids $INSTANCE_ID \
+            --instance-ids $instance_id \
             --query 'Reservations[].Instances[].PrivateIpAddress' \
             --output text)
      record_name="$instance.$domain_name" # instancename.daws88s.online
