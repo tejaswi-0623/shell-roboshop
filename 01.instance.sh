@@ -8,7 +8,7 @@ domain_name="jarugula.online"
 for instance in $@ #can create instances from command line ie during runtime
 do
   instance_id=$(aws ec2 run-instances \
-        --image-id $ami_id \ 
+        --image-id $ami_id \
         --instance-type "t3.micro" \
         --security-group-ids $sg_id \
         --tags-specifications "ResourceType=instance,Tags=[{key=Name,value=$instance}]" \
