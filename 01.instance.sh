@@ -39,7 +39,7 @@ do
     --hosted-zone-id $zone_id \
     --change-batch "
      {
-        "Comment": "Updating record", #
+        "Comment": "Updating record", 
         "Changes": [
             {
             "Action": "UPSERT",
