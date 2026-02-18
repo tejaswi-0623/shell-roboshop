@@ -11,7 +11,7 @@ do
         --image-id $ami_id \
         --instance-type "t3.micro" \
         --security-group-ids $sg_id \
-        --tags-specifications "ResourceType=instance,Tags=[{key=Name,value=$instance}]" \
+        --tag-specifications "ResourceType=instance,Tags=[{key=Name,value=$instance}]" \
         --query 'Instances[0].InstanceId' \
         --output text)
 #giving the above whole command like output of vairable variable=$(command) to create instance
