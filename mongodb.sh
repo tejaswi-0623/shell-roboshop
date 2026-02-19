@@ -17,10 +17,10 @@ mkdir -p $logs_folder
 
 validate(){
     if [ $1 -ne 0 ]; then
-      echo "$2 is.........$R failed $N"  |tee -a $l0gs_file
+      echo -e "$2 is.........$R failed $N"  |tee -a $l0gs_file
       exit 1
     else
-      echo "$2 is........$G success $N" |tee -a $logs_file
+      echo -e "$2 is........$G success $N" |tee -a $logs_file
     fi
 }
 
@@ -44,4 +44,4 @@ sed -i 's/127.0.0.1/0.0.0.0/g' /etc/mongod.conf #using sed editor to edit mongod
 validate $? "allow remote connections" # $1=$? and $2=allow remote connections from validate function
 
 systemctl restart mongod
-validate $? "restart mongodb" # $1=$? and $2=restart mongodb from validate function
+validate $? "restarted mongodb" # $1=$? and $2=restart mongodb from validate function
