@@ -9,7 +9,7 @@ N="\e[0m"   #normal
 
 
 if [ $userid -ne 0 ]; then
-  echo "$R please run the script with root user access $N" |tee -a $logs_file
+  echo -e "$R please run the script with root user access $N" |tee -a $logs_file #-e for colors
   exit 1
 fi
 
