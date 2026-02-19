@@ -5,7 +5,7 @@ logs_folder="var/log/shell-practice"
 logs_file="var/log/shell-practice/$0.log"
 R="\e[31m" #red color
 G="\e[32m" #green
-N="\e[0"m   #normal
+N="\e[0m"   #normal
 
 if [ $userid -ne 0 ]; then
   echo "$R please run the script with root user access $N" |tee -a $logs_file
