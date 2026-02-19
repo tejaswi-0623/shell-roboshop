@@ -1,6 +1,6 @@
 #!/bin/bash
 
-userid=@(id -u)
+userid=$(id -u)   #vairable=$(command)
 logs_folder="var/log/shell-practice"
 logs_file="var/log/shell-practice/$0.log"
 R="\e[31m" #red color
