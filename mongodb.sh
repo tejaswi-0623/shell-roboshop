@@ -29,11 +29,11 @@ cp mongodb.repo /etc/yum.repos.d/mongo.repo
 validate $? "copying mongo repo" # $1=$? and $2=copying mongo repo from validate function
 
 #installing mongodb
-dnf install mongodb-org -y &>>$logs_file
-validate $? "installing mongodb" # $1=$? and $2=installing mongodb from validate function
+dnf install mongodb-org -y &>> $logs_file
+validate $? "installing mongodb server" # $1=$? and $2=installing mongodb from validate function
 
 #systemctl services
-systemctl enable mongod &>>$logs_file  #here in mongod d means dameon
+systemctl enable mongod &>> $logs_file  #here in mongod d means dameon
 validate $? "enable mongodb" # $1=$? and $2=enable mongodb from validate function
 
 systemctl start mongod
