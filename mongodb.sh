@@ -17,7 +17,7 @@ mkdir -p $logs_folder
 
 validate(){
     if [ $1 -ne 0 ]; then
-      echo -e "$2 is.........$R failed $N"  |tee -a $l0gs_file
+      echo -e "$2 is.........$R failed $N"  |tee -a $logs_file
       exit 1
     else
       echo -e "$2 is........$G success $N" |tee -a $logs_file
@@ -29,7 +29,7 @@ cp mongodb.repo /etc/yum.repos.d/mongo.repo
 validate $? "copying mongo repo" # $1=$? and $2=copying mongo repo from validate function
 
 #installing mongodb
-dnf install mongodb-org -y &>> $logs_file
+dnf install mongodb-org -y &>> "$logs_file"
 validate $? "installing mongodb server" # $1=$? and $2=installing mongodb from validate function
 
 #systemctl services
