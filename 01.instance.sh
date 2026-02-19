@@ -2,10 +2,10 @@
 
 sg_id="sg-09de3392916ee8cce"
 ami_id="ami-0220d79f3f480ecf5"
-zone_id="Z08829441IZSXZL32T650"
+zone_id="Z08829441IZSXZL32T650" #domain hosted zone id
 domain_name="jarugula.online"
 
-for instance in $@ #can create instances from command line ie during runtime
+for instance in $@ #can create instances from command line i.e, during runtime and instance is vairable here
 do
   instance_id=$(aws ec2 run-instances \
         --image-id $ami_id \
@@ -33,6 +33,7 @@ do
     echo "Ip address is....$IP_address"
 #we are getting ip addresses of instance to create route 53 records 
 #if instance created is frontend we need public ip otherwise we need private ip
+#IP_address and record_name are vairables here
 
 
   aws route53 change-resource-record-sets \
