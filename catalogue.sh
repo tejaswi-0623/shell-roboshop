@@ -44,10 +44,10 @@ fi
 mkdir -p /app 
 validate $? "creating app directory"
 
-curl -o /tmp/catalogue.zip https://roboshop-artifacts.s3.amazonaws.com/catalogue-v3.zip &>>$logs_file
+curl -o /tmp/catalogue.zip https://roboshop-artifacts.s3.amazonaws.com/catalogue-v3.zip 
 validate $? "downloading catalogue code"
 
-cd /app &>>$logs_file &>>$logs_file
+cd /app &>>$logs_file
 validate $? "moving to app directory"
 
 rm -rf /app/* #if you run the code again it will ask to download it again so we are removing the code which already has and downloading now
