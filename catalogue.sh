@@ -36,7 +36,7 @@ validate $? "install nodejs"
 
 id roboshop &>>$logs_file #id username if output is not zero create user else skip it
 if [ $? -ne 0 ]; then
-  useradd --system --home /app --shell /sbin/nologin --comment "roboshop system user" roboshop &>>$logs_file
+  useradd --system --home /app --shell /sbin/nologin --comment "roboshop system user" roboshop
   validate $? "creating system user"
 else
   echo -e "user already existed ....$Y skipping $N"
@@ -48,7 +48,7 @@ validate $? "creating app directory"
 curl -o /tmp/catalogue.zip https://roboshop-artifacts.s3.amazonaws.com/catalogue-v3.zip 
 validate $? "downloading catalogue code"
 
-cd /app &>>$logs_file
+cd /app &
 validate $? "moving to app directory"
 
 rm -rf /app/* #if you run the code again it will ask to download it again so we are removing the code which already has and downloading now
@@ -71,7 +71,7 @@ systemctl start catalogue
 validate $? "enabling and starting catalogue"
 
 cp $Script_dir/mongodb.repo /etc/yum.repos.d/mongo.repo #copying mongo repo 
-dnf install mongodb-mongosh -y &>>$logs_file
+dnf install mongodb-mongosh -y 
 
 
 INDEX=$(mongosh --host $MONGODB_HOST --quiet  --eval 'db.getMongo().getDBNames().indexOf("catalogue")') #vairable=$(command)
