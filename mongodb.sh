@@ -1,19 +1,20 @@
 #!/bin/bash
 
 userid=$(id -u)   #vairable=$(command)
-logs_folder="var/log/shell-script"
+logs_folder="/var/log/shell-script"
 logs_file="var/log/shell-script/$0.log"
 R="\e[31m" #red color
 G="\e[32m" #green
 N="\e[0m"   #normal
 
+mkdir -p $logs_folder
 
 if [ $userid -ne 0 ]; then
   echo -e "$R please run the script with root user access $N" |tee -a $logs_file #-e for colors
   exit 1
 fi
 
-mkdir -p $logs_folder
+
 
 validate(){
     if [ $1 -ne 0 ]; then

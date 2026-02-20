@@ -1,7 +1,7 @@
 #!/bin/bash
 
 userid=$(id -u)
-logs_folder="var/log/shell-script"
+logs_folder="/var/log/shell-script"
 logs_file="$logs_folder/$0.log"
 R="\e[31m"
 G="\e[32m"
@@ -72,14 +72,15 @@ validate $? "enabling and starting catalogue"
 
 cp $Script_dir/mongodb.repo /etc/yum.repos.d/mongo.repo #copying mongo repo 
 dnf install mongodb-mongosh -y 
+validate $? "installing mongosh"
 
 
 INDEX=$(mongosh --host $MONGODB_HOST --quiet  --eval 'db.getMongo().getDBNames().indexOf("catalogue")') #vairable=$(command)
 
 
-if [ $INDEX -le 0 ]; then
+if [ $INDEX -lt 0 ]; then
     mongosh --host $mongodb_ip </app/db/master-data.js
-    VALIDATE $? "Loading products"
+    validate $? "Loading products"
 else
     echo -e "Products already loaded ... $Y SKIPPING $N"
 fi
