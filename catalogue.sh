@@ -74,13 +74,14 @@ cp $Script_dir/mongodb.repo /etc/yum.repos.d/mongo.repo #copying mongo repo
 dnf install mongodb-mongosh -y &>>$logs_file
 
 
-INDEX=$(mongosh --host $mongodb_ip --quiet  --eval 'db.getMongo().getDBNames().indexOf("catalogue")') #vairable=$(command)
+INDEX=$(mongosh --host $MONGODB_HOST --quiet  --eval 'db.getMongo().getDBNames().indexOf("catalogue")') #vairable=$(command)
+
 
 if [ $INDEX -le 0 ]; then
-  mongosh --host  $mongodb_ip </app/db/master-data.js
-  validate $? "loading products"
+    mongosh --host $ongodb_ip </app/db/master-data.js
+    VALIDATE $? "Loading products"
 else
-  echo -e "products or data is already loaded....$Y skipping $N"
+    echo -e "Products already loaded ... $Y SKIPPING $N"
 fi
 
 systemctl restart catalogue
