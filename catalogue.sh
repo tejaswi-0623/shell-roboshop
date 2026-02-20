@@ -83,8 +83,7 @@ else
   echo -e "products or data is already loaded....$Y skipping $N"
 fi
 
-
 systemctl restart catalogue
-validate $? "restarting the catalogue
+validate $? "restarting the catalogue"
 
 
