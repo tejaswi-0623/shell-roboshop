@@ -5,8 +5,8 @@ logs_folder="var/log/shell-script"
 logs_file="var/log/shell-script/$0.log"
 R="\e[31m"
 G="\e[32m"
-Y="\e33m"
-N="\e0m"
+Y="\e[33m"
+N="\e[0m"
 
 if [ $userid -ne 0 ]; then
   echo -e "$R please run this script with root user access $N" |tee -a $logs_file
@@ -22,18 +22,18 @@ validate(){
     fi
 }
 
-dnf module disable nodejs -y &>> $logs_file
+dnf module disable nodejs -y &>>$logs_file
 validate $? "disabling nodejs default version" 
 
-dnf module enable nodejs:20 -y &>> $logs_file
+dnf module enable nodejs:20 -y &>>$logs_file
 validate $? "enabling nodejs 20 version"
 
-dnf install nodejs -y &>> $logs_file
+dnf install nodejs -y &>>$logs_file
 validate $? "install nodejs"
 
-id system_user &>> $logs_file
+id system_user &>>$logs_file
 if [ $3 -ne 0 ]; then
-  useradd --system --home /app --shell /sbin/nologin --comment "roboshop system user" roboshop &>> $logs_file
+  useradd --system --home /app --shell /sbin/nologin --comment "roboshop system user" roboshop &>>$logs_file
   validate $? "creating system user"
 else
   echo -e "$Y user already existed ....skipping $N"
