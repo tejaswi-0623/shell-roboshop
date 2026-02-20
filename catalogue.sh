@@ -34,7 +34,7 @@ dnf install nodejs -y &>>$logs_file
 validate $? "install nodejs"
 
 id system_user &>>$logs_file #id username if output is not zero create user else skip it
-if [ $3 -ne 0 ]; then
+if [ $? -ne 0 ]; then
   useradd --system --home /app --shell /sbin/nologin --comment "roboshop system user" roboshop &>>$logs_file
   validate $? "creating system user"
 else
@@ -56,13 +56,13 @@ validate $? "removing the existing code"
 unzip /tmp/catalogue.zip 
 validate $? "unzipping the catalogue code"
 
-npm install 
+npm install &>>$logs_file
 validate $? "installing dependencies"
 
 cp $Script_dir/catalogue.service /etc/systemd/system/catalogue.service #created catalogue.service script and copying 
 validate $? "copying catalogue service file"
 
-systemctl daemon reload
+systemctl daemon-reload
 systemctl enable catalogue
 systemctl start catalogue &>>$logs_file
 validate $? "enable the start the catalogue"
@@ -71,7 +71,7 @@ cp $Script_dir/mongodb.repo /etc/yum.repos.d/mongo.repo #copying mongo repo
 dnf install mongodb-mongosh -y &>>$logs_file
 
 
-data=$(mongosh --host $MONGODB_HOST --quiet  --eval 'db.getMongo().getDBNames().indexOf("catalogue")') #vairable=$(command)
+data=$(mongosh --host $mongodb_ip --quiet  --eval 'db.getMongo().getDBNames().indexOf("catalogue")') #vairable=$(command)
 
 if [ $data -ne 0 ]; then
   mongosh --host  $mongodb_ip </app/db/master-data.js
