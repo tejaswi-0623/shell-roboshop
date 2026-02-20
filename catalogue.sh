@@ -44,19 +44,19 @@ fi
 mkdir -p /app 
 validate $? "creating app directory"
 
-curl -o /tmp/catalogue.zip https://roboshop-artifacts.s3.amazonaws.com/catalogue-v3.zip 
+curl -o /tmp/catalogue.zip https://roboshop-artifacts.s3.amazonaws.com/catalogue-v3.zip &>>$logs_file
 validate $? "downloading catalogue code"
 
-cd /app 
+cd /app &>>$logs_file
 validate $? "moving to app directory"
 
 rm -rf /app/* #if you run the code again it will ask to download it again so we are removing the code which already has and downloading now
 validate $? "removing the existing code"
 
-unzip /tmp/catalogue.zip &>>$logs_file
+unzip /tmp/catalogue.zip 
 validate $? "unzipping the catalogue code"
 
-npm install
+npm install 
 validate $? "installing dependencies"
 
 cp $Script_dir/catalogue.service /etc/systemd/system/catalogue.service #created catalogue.service script and copying 
