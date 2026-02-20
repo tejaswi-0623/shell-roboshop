@@ -47,13 +47,13 @@ validate $? "creating app directory"
 curl -o /tmp/catalogue.zip https://roboshop-artifacts.s3.amazonaws.com/catalogue-v3.zip &>>$logs_file
 validate $? "downloading catalogue code"
 
-cd /app &>>$logs_file
+cd /app &>>$logs_file &>>$logs_file
 validate $? "moving to app directory"
 
 rm -rf /app/* #if you run the code again it will ask to download it again so we are removing the code which already has and downloading now
 validate $? "removing the existing code"
 
-unzip /tmp/catalogue.zip 
+unzip /tmp/catalogue.zip &>>$logs_file
 validate $? "unzipping the catalogue code"
 
 npm install 
@@ -64,11 +64,11 @@ validate $? "copying catalogue service file"
 
 systemctl daemon reload
 systemctl enable catalogue
-systemctl start catalogue
+systemctl start catalogue &>>$logs_file
 validate $? "enable the start the catalogue"
 
 cp $Script_dir/mongodb.repo /etc/yum.repos.d/mongo.repo #copying mongo repo 
-dnf install mongodb-mongosh -y
+dnf install mongodb-mongosh -y &>>$logs_file
 
 
 data=$(mongosh --host $MONGODB_HOST --quiet  --eval 'db.getMongo().getDBNames().indexOf("catalogue")') #vairable=$(command)
