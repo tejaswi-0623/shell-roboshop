@@ -57,7 +57,7 @@ validate $? "removing the existing code"
 unzip /tmp/catalogue.zip 
 validate $? "unzipping the catalogue code"
 
-npm install &>>$logs_file
+npm install 
 validate $? "installing dependencies"
 
 cp $Script_dir/catalogue.service /etc/systemd/system/catalogue.service #created catalogue.service script and copying 
