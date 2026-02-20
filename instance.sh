@@ -13,7 +13,7 @@ do
         --security-group-ids $sg_id \
         --tag-specifications "ResourceType=instance,Tags=[{Key=Name,Value=$instance}]" \
         --query 'Instances[0].InstanceId' \
-        --output text)
+        --output text )
 #giving the above whole command like output of vairable variable=$(command) to create instance
 #the instance is created and we are keeping that instance id in instance_id vairable
 
