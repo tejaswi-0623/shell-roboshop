@@ -63,10 +63,8 @@ validate $? "installing dependencies"
 cp $Script_dir/catalogue.service /etc/systemd/system/catalogue.service #created catalogue.service script and copying 
 validate $? "copying catalogue service file"
 
-systemctl daemon-reload
-systemctl enable catalogue
-systemctl start catalogue &>>$logs_file
-validate $? "enable and start the catalogue"
+systemctl daemon-reload 
+validate $? "reloading the service"
 
 cp $Script_dir/mongodb.repo /etc/yum.repos.d/mongo.repo #copying mongo repo 
 dnf install mongodb-mongosh -y &>>$logs_file
@@ -81,7 +79,8 @@ else
   echo -e "products or data is already loaded....$Y skipping $N"
 fi
 
-systemctl restart catalogue
-validate $? "restarting the catalogue"
+systemctl enable catalogue
+systemctl start catalogue
+validate $? "enabling and starting catalogue"
 
 
