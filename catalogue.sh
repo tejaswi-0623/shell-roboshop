@@ -2,7 +2,7 @@
 
 userid=$(id -u)
 logs_folder="var/log/shell-script"
-logs_file="$logs_folder/$0.log"
+logs_file="$logs_folder/catalogue.sh.log"
 R="\e[31m"
 G="\e[32m"
 Y="\e[33m"
@@ -66,7 +66,7 @@ validate $? "copying catalogue service file"
 systemctl daemon-reload
 systemctl enable catalogue
 systemctl start catalogue &>>$logs_file
-validate $? "enable the start the catalogue"
+validate $? "enable and start the catalogue"
 
 cp $Script_dir/mongodb.repo /etc/yum.repos.d/mongo.repo #copying mongo repo 
 dnf install mongodb-mongosh -y &>>$logs_file
