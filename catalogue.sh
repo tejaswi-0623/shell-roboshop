@@ -72,7 +72,7 @@ dnf install mongodb-mongosh -y &>>$logs_file
 
 data=$(mongosh --host $mongodb_ip --quiet  --eval 'db.getMongo().getDBNames().indexOf("catalogue")') #vairable=$(command)
 
-if [ $data -ne 0 ]; then
+if [ $data -le 0 ]; then
   mongosh --host  $mongodb_ip </app/db/master-data.js
   validate $? "loading products"
 else
