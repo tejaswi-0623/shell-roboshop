@@ -34,7 +34,7 @@ validate $? "enabling nodejs 20 version"
 dnf install nodejs -y &>>$logs_file
 validate $? "install nodejs"
 
-id system_user &>>$logs_file #id username if output is not zero create user else skip it
+id roboshop &>>$logs_file #id username if output is not zero create user else skip it
 if [ $? -ne 0 ]; then
   useradd --system --home /app --shell /sbin/nologin --comment "roboshop system user" roboshop &>>$logs_file
   validate $? "creating system user"
