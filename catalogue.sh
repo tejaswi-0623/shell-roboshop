@@ -2,7 +2,7 @@
 
 userid=$(id -u)
 logs_folder="var/log/shell-script"
-logs_file="$logs_folder/catalogue.sh.log"
+logs_file="$logs_folder/$(basename $0).log"
 R="\e[31m"
 G="\e[32m"
 Y="\e[33m"
