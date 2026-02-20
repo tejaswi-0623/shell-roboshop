@@ -8,7 +8,7 @@ G="\e[32m"
 Y="\e[33m"
 N="\e[0m"
 Script_dir=$PWD
-mongodb_ip="mongodb.jarugula.online"
+mongodb_ip=mongodb.jarugula.online
 
 if [ $userid -ne 0 ]; then
   echo -e "$R please run this script with root user access $N" |tee -a $logs_file
