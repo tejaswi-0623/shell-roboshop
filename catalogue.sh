@@ -14,6 +14,7 @@ if [ $userid -ne 0 ]; then
   echo -e "$R please run this script with root user access $N" |tee -a $logs_file
   exit 1
 fi
+mkdir -p "$logs_folder"
 
 validate(){
     if [ $1 -ne 0 ]; then
