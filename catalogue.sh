@@ -2,7 +2,7 @@
 
 userid=$(id -u)
 logs_folder="var/log/shell-script"
-logs_file="$logs_folder/$(basename $0).log"
+logs_file="$logs_folder/$0.log"
 R="\e[31m"
 G="\e[32m"
 Y="\e[33m"
@@ -66,21 +66,25 @@ validate $? "copying catalogue service file"
 systemctl daemon-reload 
 validate $? "reloading the service"
 
+systemctl enable catalogue
+systemctl start catalogue
+validate $? "enabling and starting catalogue"
+
 cp $Script_dir/mongodb.repo /etc/yum.repos.d/mongo.repo #copying mongo repo 
 dnf install mongodb-mongosh -y &>>$logs_file
 
 
-data=$(mongosh --host $mongodb_ip --quiet  --eval 'db.getMongo().getDBNames().indexOf("catalogue")') #vairable=$(command)
+INDEX=$(mongosh --host $mongodb_ip --quiet  --eval 'db.getMongo().getDBNames().indexOf("catalogue")') #vairable=$(command)
 
-if [ $data -le 0 ]; then
+if [ $INDEX -le 0 ]; then
   mongosh --host  $mongodb_ip </app/db/master-data.js
   validate $? "loading products"
 else
   echo -e "products or data is already loaded....$Y skipping $N"
 fi
 
-systemctl enable catalogue
-systemctl start catalogue
-validate $? "enabling and starting catalogue"
+
+systemctl restart catalogue
+validate $? "restarting the catalogue
 
 
