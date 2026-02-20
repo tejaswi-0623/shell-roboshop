@@ -15,10 +15,10 @@ fi
 
 validate(){
     if [ $1 -ne 0 ]; then
-      echo -e "$R $2 is........failed $N" |tee -a $logs_file
+      echo -e "$2 is........$R failed $N" |tee -a $logs_file
       exit 1
     else
-      echo -e "$G $2 is...........success $N"|tee -a $logs_file
+      echo -e "$2 is...........$G success $N"|tee -a $logs_file
     fi
 }
 
@@ -36,7 +36,7 @@ if [ $3 -ne 0 ]; then
   useradd --system --home /app --shell /sbin/nologin --comment "roboshop system user" roboshop &>>$logs_file
   validate $? "creating system user"
 else
-  echo -e "$Y user already existed ....skipping $N"
+  echo -e "user already existed ....$Y skipping $N"
 fi
 
 mkdir -p /app 
