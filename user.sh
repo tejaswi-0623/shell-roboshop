@@ -7,7 +7,7 @@ R="\e[31m"
 G="\e[32m"
 Y="\e[33m"
 N="\e[0m"
-script_dir=$PWD
+SCRIPT_DIR=$PWD
 
 mkdir -p $logs_folder
 
@@ -60,7 +60,8 @@ validate $? "unzipping the user code"
 npm install &>>$logs_file
 validate $? "installing dependencies"
 
-cp $script_dir/user.service  /etc/systemd/sytem/user.service
+
+cp $SCRIPT_DIR/user.service /etc/systemd/system/user.service
 validate $? "systemctl services"
 
 systemctl daemon-reload
