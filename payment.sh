@@ -48,7 +48,7 @@ validate $? "moving to app directory"
 unzip /tmp/payment.zip &>>$logs_file
 validate $? "unzipping the payment code"
 
-pip3 install -r requirements.txt
+pip3 install -r requirements.txt &>>$logs_file
 validate $? "installing dependencies"
 
 cp $SCRIPT_DIR/payment.service /etc/systemd/system/payment.service &>>$logs_file
