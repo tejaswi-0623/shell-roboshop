@@ -68,7 +68,7 @@ dnf install mysql -y &>>$logs_file
 validate $? "installing mysql"
 
 
-mysql -h $MYSQL_HOST -uroot -pRoboShop@1 -e 'use cities'  #if schema there data loaded and by using -e and giving validation
+mysql -h $MYSQL_HOST -uroot -pRoboShop@1 -e 'use cities'  #if schema there data loaded and by using -e for extra args and giving validation
 if [ $? -ne 0 ]; then
     mysql -h $MYSQL_HOST -uroot -pRoboShop@1 < /app/db/schema.sql &>>$logs_file
     mysql -h $MYSQL_HOST -uroot -pRoboShop@1 < /app/db/app-user.sql &>>$logs_file
