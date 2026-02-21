@@ -5,9 +5,8 @@ logs_folder="var/log/shell-script"
 logs_file="$logs_folder/$0.log"
 R="\e[31m"
 G="\e[32m"
-Y="\e[33m"
 N="\e[0m"
-$script=$PWD
+
 
 mkdir -p $logs_folder
 
@@ -17,7 +16,7 @@ if [ $userid -ne 0 ]; then
 fi
 
 validate(){
-   if [ $1 -ne 0]; then
+   if [ $1 -ne 0 ]; then
      echo -e "$2 is.........$R failed $N" |tee -a $logs_file
      exit 1
    else
