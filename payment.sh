@@ -51,7 +51,7 @@ validate $? "unzipping the payment code"
 pip3 install -r requirements.txt
 validate $? "installing dependencies"
 
-cp SCRIPT_DIR/payment.service /etc/systemd/system/payment.service &>>$logs_file
+cp $SCRIPT_DIR/payment.service /etc/systemd/system/payment.service &>>$logs_file
 validate $? "creating systemctl services"
 
 systemctl daemon-reload &>>$logs_file 
