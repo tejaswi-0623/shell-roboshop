@@ -1,8 +1,8 @@
 #!/bin/bash
 
 userid=$(id -u)   #vairable=$(command)
-logs_folder="var/log/shell-script"
-logs_file="var/log/shell-script/$0.log"
+logs_folder="/var/log/shell-script"
+logs_file="/var/log/shell-script/$0.log"
 R="\e[31m" #red color
 G="\e[32m" #green
 N="\e[0m"   #normal
