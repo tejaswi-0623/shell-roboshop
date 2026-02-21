@@ -45,6 +45,9 @@ fi
 mkdir /app &>>$logs_file
 validate $? "create app directory"
 
+rm -rf /app/*
+VALIDATE $? "Removing existing code"  #remove the code if i run the script again before downloading"
+
 curl -L -o /tmp/user.zip https://roboshop-artifacts.s3.amazonaws.com/user-v3.zip 
 validate $? "downloading user code"
 
