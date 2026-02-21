@@ -14,7 +14,7 @@ if [ $userid -ne 0 ]; then
   exit 1
 fi
 
-validate (){
+validate(){
     if [ $1 -ne 0 ]; then
       echo -e "$2 is .......$R failed $N" |tee -a $logs_file
       exit 1
@@ -26,7 +26,7 @@ validate (){
 dnf install mysql-server -y $>>$logs_file
 validate $? "installing mysql"
 
-systemctl enable mysqld
+systemctl enable mysqld 
 systemctl start mysqld
 validate $? "enable and start mysql"
 
