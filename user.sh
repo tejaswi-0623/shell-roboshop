@@ -46,7 +46,7 @@ mkdir -p /app
 validate $? "create app directory"
 
 rm -rf /app/*
-VALIDATE $? "Removing existing code"  #remove the code if i run the script again before downloading"
+validate $? "Removing existing code"  #remove the code if i run the script again before downloading
 
 curl -L -o /tmp/user.zip https://roboshop-artifacts.s3.amazonaws.com/user-v3.zip 
 validate $? "downloading user code"
@@ -54,7 +54,7 @@ validate $? "downloading user code"
 cd /app 
 validate $? "moving to app directory"
 
-unzip /tmp/user.zip &>>$logs_file
+unzip /tmp/user.zip 
 validate $? "unzipping the user code"
 
 npm install &>>$logs_file
