@@ -67,14 +67,15 @@ validate $? "reloading the service"
 dnf install mysql -y &>>$logs_file
 validate $? "installing mysql"
 
-mysql -h $MYSQL_HOST -uroot -pRoboShop@1 -e 'use cities'
+
+mysql -h $MYSQL_HOST -uroot -pRoboShop@1 -e 'use cities'  #if schema there data loaded and by using -e and giving validation
 if [ $? -ne 0 ]; then
     mysql -h $MYSQL_HOST -uroot -pRoboShop@1 < /app/db/schema.sql &>>$logs_file
     mysql -h $MYSQL_HOST -uroot -pRoboShop@1 < /app/db/app-user.sql &>>$logs_file
     mysql -h $MYSQL_HOST -uroot -pRoboShop@1 < /app/db/master-data.sql &>>$logs_file
     validate $? "loaded data into MySQL"
 else
-    echo -e "data is already loaded ... $Y skipping $N"
+    echo -e "data is already loaded ... $Y skipping $N" #if i run the script again it shows already load exists so skipped 
 fi
 
 systemctl enable shipping
