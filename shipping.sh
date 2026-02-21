@@ -23,6 +23,7 @@ validate(){
      exit 1
     else
       echo -e "$2 is........$G success $N" |tee -a $logs_file
+    fi
  }
 
 dnf install maven -y &>>$logs_file
