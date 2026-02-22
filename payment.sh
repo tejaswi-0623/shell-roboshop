@@ -39,6 +39,9 @@ fi
 mkdir -p /app &>>$logs_file
 validate $? "creating app directory"
 
+rm -rf /app/*
+VALIDATE $? "Removing existing code"
+
 curl -L -o /tmp/payment.zip https://roboshop-artifacts.s3.amazonaws.com/payment-v3.zip 
 validate $? "downloading payment code"
 
