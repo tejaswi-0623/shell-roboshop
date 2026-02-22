@@ -49,7 +49,9 @@ validate $? "moving to nginx html folder"
 unzip /tmp/frontend.zip &>>$logs_file
 validate $? "unzipping the frontend code"
 
-cp $SCRIPT_DIR/nginx.service /etc/nginx/nginx.conf
+rm -rf /etc/nginx/nginx.conf #remove default content of service if script runs again
+
+cp $SCRIPT_DIR/nginx.conf /etc/nginx/nginx.conf
 validate $? "creating systemctl service"
 
 systemctl restart nginx &>>$logs_file
