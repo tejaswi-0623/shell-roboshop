@@ -52,7 +52,7 @@ validate $? "unzipping the frontend code"
 rm -rf /etc/nginx/nginx.conf #remove default content of service if script runs again
 
 cp $SCRIPT_DIR/nginx.conf /etc/nginx/nginx.conf
-validate $? "creating systemctl service"
+validate $? "creating nginx configuration file"
 
 systemctl restart nginx &>>$logs_file
 validate $? "restarting nginx"
