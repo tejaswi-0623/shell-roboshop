@@ -28,7 +28,7 @@ do
             --instance-ids $instance_id \
             --query 'Reservations[].Instances[].PrivateIpAddress' \
             --output text)
-     record_name="$instance.$domain_name" # instancename.daws88s.online
+     record_name="$instance.$domain_name" # instancename.jarugula.online
   fi
     echo "Ip address is....$IP_address"
 #we are getting ip addresses of instance to create route 53 records 
